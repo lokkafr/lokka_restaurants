@@ -4,10 +4,8 @@ An all-in-one restaurant manager built for ox_core.
 - [ox_core](https://github.com/overextended/ox_core/)
 - [ox_lib](https://github.com/overextended/ox_lib/)
 - [ox_target](https://github.com/overextended/ox_target/)
-## Stashes
-This resource will not be handling stashes as that system has already been created by the OverExtended team in **ox_inventory** and re-inventing the wheel would be pointless.
 ## Copyright
-Copyright © 2024 CodeSurge https://github.com/codesurge
+Copyright © 2024 lokkafr https://github.com/lokkafr
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
