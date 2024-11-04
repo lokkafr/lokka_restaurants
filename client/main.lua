@@ -5,7 +5,6 @@ local blips = {}
 local data = lib.callback.await('lokka_restaurants:getData', false)
 
 for i = 1, #data.clockins do
-    local aG = Ox.GetPlayer().get('activeGroup')
     local z = data.clockins[i]
     z.debug = general.Zones.Debug
     z.drawSprite = general.Zones.Sprite
@@ -15,7 +14,7 @@ for i = 1, #data.clockins do
             icon = 'fas fa-clock',
             groups = z.job,
             onSelect = function (_) lib.callback('lokka_restaurants:clockin', false, function() end, i) end,
-            canInteract = function(_, _, _, _, _) return aG ~= z.job end,
+            canInteract = function(_, _, _, _, _) return Ox.GetPlayer().get('activeGroup') ~= z.job end,
             distance = 2,
         },
         {
@@ -23,7 +22,7 @@ for i = 1, #data.clockins do
             icon = 'fas fa-clock',
             groups = z.job,
             onSelect = function (_) lib.callback('lokka_restaurants:clockin', false, function() end, i) end,
-            canInteract = function(_, _, _, _, _) return aG == z.job end,
+            canInteract = function(_, _, _, _, _) return Ox.GetPlayer().get('activeGroup') == z.job end,
             distance = 2,
         },
     }
