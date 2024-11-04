@@ -43,7 +43,56 @@ for i = 1, #data.stashes do
     zones[#zones+1] = exports.ox_target:addBoxZone(s)
 end
 
+for i = 1, #data.registers do
+    local r = data.registers[i]
+    r.debug = general.Zones.Debug
+    r.drawSprite = general.Zones.Sprite
+    r.options = {
+        label = 'Register',
+        icon = 'fas fa-cash-register',
+        groups = r.job.id,
+        onSelect = function (_)
+            local options = lib.callback.await('lokka_restaurants:getNearbyPlayers', false)
+            local input = lib.inputDialog('Register', {
+                {
+                    type = 'select',
+                    label = 'State ID',
+                    options = options,
+                    icon = 'fas fa-id-card',
+                    required = true,
+                },
+                {
+                    type = 'number',
+                    label = 'Amount',
+                    icon = 'fas fa-money-bill',
+                    required = true,
+                    min = 0,
+                },
+            })
+
+            local invoicePaid = lib.callback.await('lokka_restaurants:createInvoice', false, tonumber(input[1]), tonumber(input[2]), r.job)
+            lib.notify({
+                title = 'Invoice Status',
+                description = invoicePaid and 'Paid' or 'Unpaid',
+                type = invoicePaid and 'success' or 'error'
+            })
+        end,
+        distance = 2,
+    }
+    zones[#zones+1] = exports.ox_target:addBoxZone(r)
+end
+
 RegisterNetEvent('onResourceStop', function(rN)
     if rN ~= GetCurrentResourceName() then return end
     for i = 1, #zones do exports.ox_target:removeZone(zones[i]) end
+end)
+
+lib.callback.register('lokka_restaurants:client:createInvoice', function(job, amount)
+    local alert = lib.alertDialog({
+        header = ('%s Invoice'):format(job),
+        content = ('Do you agree to pay $%d?'):format(amount),
+        centered = true,
+        cancel = true,
+    })
+    return alert == 'confirm'
 end)
