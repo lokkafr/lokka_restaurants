@@ -1,6 +1,7 @@
 lib.versionCheck('lokkafr/lokka_restaurants')
 
 local jobs = require 'config.jobs'
+local general = require 'config.general'
 
 local clockins = {}
 local stashes = {}
@@ -77,9 +78,13 @@ RegisterNetEvent('onResourceStart', function(rN)
         clockins[newIndex] = jobs[i].Clockin
         clockins[newIndex].job = jobName
 
-        lib.print.debug('3. Indexing crafting locations')
-        for i2 = 1, #jobs[i].Crafting do
-            exports.ox_inventory:RegisterCraftingBench(('%s_crafting_%d'):format(jobName, i2), jobs[i].Crafting)
+        if general.Crafting then
+            lib.print.debug('3. Indexing crafting locations')
+            for i2 = 1, #jobs[i].Crafting do
+                local cBench = jobs[i].Crafting[i2]
+                cBench.groups = { [jobName] = 0 }
+                exports.ox_inventory:RegisterCraftingBench(('%s_crafting_%d'):format(jobName, i2), cBench)
+            end
         end
 
         lib.print.debug(('-- Completed %s job --'):format(jobName))
