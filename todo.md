@@ -1,5 +1,0 @@
-- [x] Crafting
-- [x] Stashes
-- [x] Clocking in
-- [ ] Registers
-- [ ] Boss Menu
