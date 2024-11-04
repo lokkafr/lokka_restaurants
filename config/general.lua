@@ -1,7 +1,7 @@
 return {
     Zones = {
-        Sprite = true,
-        Debug = true,
+        Sprite = false,
+        Debug = false,
     },
     Crafting = false,
 }
