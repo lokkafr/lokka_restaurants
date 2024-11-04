@@ -71,6 +71,7 @@ for i = 1, #data.registers do
                 },
             })
 
+            if not input then return end
             local invoicePaid = lib.callback.await('lokka_restaurants:createInvoice', false, tonumber(input[1]), tonumber(input[2]), r.job)
             lib.notify({
                 title = 'Invoice Status',
