@@ -1,5 +1,6 @@
 local general = require 'config.general'
 local zones = {}
+local blips = {}
 
 local data = lib.callback.await('lokka_restaurants:getData', false)
 
@@ -82,9 +83,25 @@ for i = 1, #data.registers do
     zones[#zones+1] = exports.ox_target:addBoxZone(r)
 end
 
+for i = 1, #data.blips do
+    local b = data.blips[i]
+    local blip = AddBlipForCoord(b.Coords)
+    SetBlipSprite(blip, b.Sprite)
+    SetBlipDisplay(blip, 4)
+    SetBlipScale(blip, b.Size)
+    SetBlipColour(blip, b.Color)
+    SetBlipAsShortRange(blip, true)
+    BeginTextCommandSetBlipName("STRING")
+    AddTextComponentString(b.Label)
+    EndTextCommandSetBlipName(blip)
+    if general.BlipCategory then SetBlipCategory(blip, 11) end
+    blips[#blips+1] = blip
+end
+
 RegisterNetEvent('onResourceStop', function(rN)
     if rN ~= GetCurrentResourceName() then return end
     for i = 1, #zones do exports.ox_target:removeZone(zones[i]) end
+    for i = 1, #blips do RemoveBlip(blips[i]) end
 end)
 
 lib.callback.register('lokka_restaurants:client:createInvoice', function(job, amount)

@@ -120,5 +120,11 @@ return {
                 rotation = 35.0,
             },
         },
-    }
+        Blip = {
+            Coords = vec3(-1192.960, -891.586, 13.995),
+            Sprite = 106,
+            Color = 5,
+            Size = 0.7,
+        }
+    },
 }

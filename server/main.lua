@@ -6,6 +6,7 @@ local general = require 'config.general'
 local clockins = {}
 local stashes = {}
 local registers = {}
+local blips = {}
 
 -- Functions
 local function RegisterCallbacks()
@@ -36,6 +37,7 @@ local function RegisterCallbacks()
         clockins = clockins,
         stashes = stashes,
         registers = registers,
+        blips = blips,
     } end)
 
     lib.callback.register('lokka_restaurants:getNearbyPlayers', function(source)
@@ -128,6 +130,11 @@ RegisterNetEvent('onResourceStart', function(rN)
                 label = jobs[i].Job.label,
             }
         end
+
+        lib.print.debug('Indexing blip')
+        local newIndex = #blips + 1
+        blips[newIndex] = jobs[i].Blip
+        blips[newIndex].Label = jobs[i].Job.label
 
         lib.print.debug(('-- Completed %s job --'):format(jobName))
     end

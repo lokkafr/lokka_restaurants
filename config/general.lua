@@ -4,4 +4,5 @@ return {
         Debug = false,
     },
     Crafting = false,
+    BlipCategory = false,
 }
