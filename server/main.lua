@@ -48,7 +48,7 @@ RegisterNetEvent('onResourceStart', function(rN)
         Ox.CreateGroup(jobs[i].Job)
         ::skip::
     
-        lib.print.debug('1. Registering stashes')
+        lib.print.debug('Registering stashes')
         for k, v in pairs(jobs[i].Stashes) do
             if not v then goto continue end
             local sID = ('%s_%s'):format(jobName, (k):lower())
@@ -73,13 +73,13 @@ RegisterNetEvent('onResourceStart', function(rN)
             ::continue::
         end
     
-        lib.print.debug('2. Indexing clockin')
+        lib.print.debug('Indexing clockin')
         local newIndex = #clockins + 1
         clockins[newIndex] = jobs[i].Clockin
         clockins[newIndex].job = jobName
 
         if general.Crafting then
-            lib.print.debug('3. Indexing crafting locations')
+            lib.print.debug('Indexing crafting locations')
             for i2 = 1, #jobs[i].Crafting do
                 local cBench = jobs[i].Crafting[i2]
                 cBench.groups = { [jobName] = 0 }
