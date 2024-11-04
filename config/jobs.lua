@@ -8,7 +8,6 @@ return {
                 { label = 'Manager', accountRole = 'manager' },
                 { label = 'CEO', accountRole = 'owner' }
             },
-            type = 'restaurant',
             hasAccount = true,
         },
         Stashes = {
