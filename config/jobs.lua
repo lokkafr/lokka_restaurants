@@ -18,6 +18,7 @@ return {
                 coords = vec3(-1205.34, -893.81, 14.0),
                 size = vec3(1.0, 2.75, 2.0),
                 rotation = 35.0,
+                job = true,
             },
             ['Hot Plate'] = {
                 slots = 25,
@@ -25,6 +26,7 @@ return {
                 coords = vec3(-1197.7, -894.3, 14.0),
                 size = vec3(1, 4.25, 2.0),
                 rotation = 34.0,
+                job = true,
             },
             ['Left Counter'] = {
                 slots = 5,

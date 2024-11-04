@@ -90,7 +90,7 @@ RegisterNetEvent('onResourceStart', function(rN)
                 v.slots,
                 v.maxWeight,
                 nil,
-                { [jobName] = 0 },
+                v.job == true and { [jobName] = 0 } or nil,
                 v.coords
             )
 
@@ -100,7 +100,7 @@ RegisterNetEvent('onResourceStart', function(rN)
                 rotation = v.rotation,
                 label = ('Open %s'):format(k),
                 sID = sID,
-                job = jobName,
+                job = (v.job == true) and jobName or nil,
             }
             ::continue::
         end
