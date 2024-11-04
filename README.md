@@ -4,6 +4,10 @@ An all-in-one restaurant manager built for ox_core.
 - [ox_core](https://github.com/overextended/ox_core/)
 - [ox_lib](https://github.com/overextended/ox_lib/)
 - [ox_target](https://github.com/overextended/ox_target/)
+## Mapping Configs
+For a simple way to handle people sharing maps, you can create a new issue with the mapping template. I will review the templates and, once they follow the format and are good to go, will be closed so others can view it.
+
+[View approved mapping configs here.](https://github.com/lokkafr/lokka_restaurants/issues?q=is%3Aissue+is%3Aclosed+label%3Amap)
 ## Crafting
 I currently have an open draft pull request for ox_inventory that makes the crafting with this script work dynamically with the already pre-built systems. By default, crafting is disabled in this script, but can be enabled through `config/general.lua`. If you enable it, you will need to port the changes over from [this pull request](https://github.com/overextended/ox_inventory/pull/1830) into your ox_inventory.
 
