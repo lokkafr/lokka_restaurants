@@ -29,12 +29,27 @@ return {
         },
         Crafting = {
             {
-                coords = vec3(-58.0, -1098.0, 26.0),
-                size = vec3(1.05, 1.35, 1.3),
-                rotation = 88.75,
-                label = 'Grill',
-                icon = 'fas fa-burger',
-                recipes = { 'test_craft' },
+                items = {
+                    {
+                        name = 'testburger',
+                        ingredients = {
+                            bandage = 1,
+                        },
+                        duration = 5000,
+                        count = 1,
+                    },
+                },
+                points = {
+                    vec3(-1147.083008, -2002.662109, 13.180260),
+                },
+                zones = {
+                    {
+                        coords = vec3(-58.0, -1098.0, 26.0),
+                        size = vec3(1.05, 1.35, 1.3),
+                        distance = 1.5,
+                        rotation = 88.75.0,
+                    },
+                },
             }
         },
     }
