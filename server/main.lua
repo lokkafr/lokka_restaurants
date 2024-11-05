@@ -7,6 +7,7 @@ local clockins = {}
 local stashes = {}
 local registers = {}
 local blips = {}
+local commissions = {}
 
 -- Functions
 local function RegisterCallbacks()
@@ -67,7 +68,13 @@ local function RegisterCallbacks()
         if not charAccount then return false end
 
         local paying = charAccount.removeBalance({ amount = amount, message = ('%s Invoice'):format(job.label), overdraw = false })
-        return paying.success
+        if paying.success then
+            local pPay = math.ceil(amount * commissions[job.id])
+            Ox.GetPlayer(source).getAccount().addBalance({ amount = pPay, message = ('%s Commission'):format(job.label) })
+            Ox.GetGroupAccount(job.id).addBalance({ amount = (amount - pPay), message = ('%s Invoice'):format(job.label) })
+            return true
+        end
+        return false
     end)
 end
 
@@ -135,6 +142,9 @@ RegisterNetEvent('onResourceStart', function(rN)
         local newIndex = #blips + 1
         blips[newIndex] = jobs[i].Blip
         blips[newIndex].Label = jobs[i].Job.label
+
+        lib.print.debug('Registering commission')
+        commissions[jobName] = jobs[i].Job.commission or 0.25
 
         lib.print.debug(('-- Completed %s job --'):format(jobName))
     end

@@ -9,6 +9,7 @@ return {
                 { label = 'CEO', accountRole = 'owner' }
             },
             hasAccount = true,
+            commission = 0.25,
         },
         Stashes = {
             Cooler = {
